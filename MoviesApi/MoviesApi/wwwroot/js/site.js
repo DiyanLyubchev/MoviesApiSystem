@@ -16,7 +16,7 @@ function ReviewedMovie(id) {
         type: 'Post',
         data: { reviewedMovieId: id },
         success: function () {
-            window.location.href = "/home/index/" ;
+            window.location.href = "/home/showMyMovie/" ;
         }
     });
 }
