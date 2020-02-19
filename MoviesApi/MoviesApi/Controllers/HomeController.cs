@@ -82,7 +82,15 @@ namespace MoviesApi.Controllers
 
             return View(listMovieViewModel);
         }
+          
 
+        public async Task<IActionResult> ReviewedMovie(int reviewedMovieId)
+        {
+            await this.service.RemoveReviewedMovie(reviewedMovieId);
+
+            return RedirectToAction("Index");
+
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

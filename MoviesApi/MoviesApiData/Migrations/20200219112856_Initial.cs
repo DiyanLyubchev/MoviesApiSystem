@@ -16,6 +16,7 @@ namespace MoviesApiData.Migrations
                     Title = table.Column<string>(nullable: true),
                     IMDB = table.Column<string>(nullable: true),
                     Year = table.Column<int>(nullable: false),
+                    IsReviewed = table.Column<bool>(nullable: false),
                     AddOn = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

@@ -15,6 +15,8 @@ namespace MoviesApiData
 
         public int Year { get; set; }
 
+        public bool IsReviewed { get; set; }
+
         public DateTime AddOn { get; set; }
 
         public ICollection<Movies> Movies { get; set; }

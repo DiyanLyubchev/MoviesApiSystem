@@ -10,6 +10,13 @@ function AddMovie(id) {
     })
 }
 
+function ReviewedMovie(id) {
+    $.ajax({
+        url: '/Home/ReviewedMovie',
+        type: 'Get',
+        data: { reviewedMovieId: id },
+    });
+}
 
 function RefreshMovie() {
     window.location.href = '/Home/GetNewMovies'

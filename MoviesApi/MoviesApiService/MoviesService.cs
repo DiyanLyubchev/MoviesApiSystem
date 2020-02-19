@@ -71,6 +71,7 @@ namespace MoviesApiService
         public async Task<IEnumerable<MyMoviesDto>> GetMyMoviesAsync()
         {
             var movies = await this.context.MyMovies
+                 .Where(reviewed => reviewed.IsReviewed == false)
                 .ToListAsync();
 
             var moviesDto = this.mapper.Map<List<MyMoviesDto>>(movies);
@@ -89,6 +90,17 @@ namespace MoviesApiService
                 .Map<List<MoviesDto>>(movies.Take(10));
 
             return moviesDto;
+        }
+
+        public async Task RemoveReviewedMovie(int id)
+        {
+            var movies = await this.context.MyMovies
+                 .Where(reviewedMovieId => reviewedMovieId.Id == id)
+                .FirstAsync();
+
+            movies.IsReviewed = true;
+
+            await this.context.SaveChangesAsync();
         }
     }
 }
