@@ -68,14 +68,19 @@ namespace MoviesApi.Controllers
 
         public async Task<IActionResult> AddMyFavoriteMovies(int moviesId)
         {
-            var dto = new MoviesDto
-            {
+            var movieDto = await this.service.FindByIdAsync(moviesId);
 
-            };
+            await this.service.AddToMyFavoriteAsync(movieDto);
 
-            await this.service.AddToMyFavoriteAsync(dto);
+            return RedirectToAction("Index");
+        }
 
-            return View("Index");
+        public async Task<IActionResult> ShowMyMovie()
+        {
+            var myMovie = await this.service.GetMyMoviesAsync();
+            var listMovieViewModel = this.mapper.Map<List<MyMoviesViewModel>>(myMovie);
+
+            return View(listMovieViewModel);
         }
 
 

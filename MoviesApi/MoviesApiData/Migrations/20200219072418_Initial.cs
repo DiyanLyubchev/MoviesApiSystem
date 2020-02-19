@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MoviesApiData.Migrations
 {
@@ -14,7 +15,8 @@ namespace MoviesApiData.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(nullable: true),
                     IMDB = table.Column<string>(nullable: true),
-                    Year = table.Column<int>(nullable: false)
+                    Year = table.Column<int>(nullable: false),
+                    AddOn = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace MoviesApiData
+namespace MoviesApi.Models
 {
-    public class MyMovies
+    public class MyMoviesViewModel
     {
-        [Key]
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -16,7 +13,5 @@ namespace MoviesApiData
         public int Year { get; set; }
 
         public DateTime AddOn { get; set; }
-
-        public ICollection<Movies> Movies { get; set; }
     }
 }

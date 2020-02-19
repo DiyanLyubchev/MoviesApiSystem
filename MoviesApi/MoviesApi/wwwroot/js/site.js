@@ -13,12 +13,10 @@ function RefreshMovie() {
 }
 
 
-//let myVar = setInterval(function () {
+function ShowMyMovie() {
+    window.location.href = '/Home/ShowMyMovie'
+}
 
-//    window.location.href = '/Home/GetNewMovies'
-
-//}, 1000);
-
-//function myStopFunction() {
-//    clearInterval(myVar);
-//}
+function GoHome() {
+    window.location.href = '/Home/Index'
+}

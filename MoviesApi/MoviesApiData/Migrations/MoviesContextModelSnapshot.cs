@@ -52,6 +52,9 @@ namespace MoviesApiData.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("AddOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("IMDB")
                         .HasColumnType("nvarchar(max)");
 

@@ -10,7 +10,7 @@ using MoviesApiData;
 namespace MoviesApiData.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    [Migration("20200218145435_Initial")]
+    [Migration("20200219072418_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +53,9 @@ namespace MoviesApiData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AddOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("IMDB")
                         .HasColumnType("nvarchar(max)");

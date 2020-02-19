@@ -1,4 +1,6 @@
-﻿namespace MoviesApiService
+﻿using System;
+
+namespace MoviesApiService
 {
     public class MoviesDto
     {
@@ -9,5 +11,6 @@
         public string IMDB { get; set; }
 
         public int Year { get; set; }
+
     }
 }
