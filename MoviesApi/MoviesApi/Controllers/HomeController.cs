@@ -72,7 +72,7 @@ namespace MoviesApi.Controllers
 
             await this.service.AddToMyFavoriteAsync(movieDto);
 
-            return RedirectToAction("Index");
+            return Json(new { movie = moviesId });
         }
 
         public async Task<IActionResult> ShowMyMovie()

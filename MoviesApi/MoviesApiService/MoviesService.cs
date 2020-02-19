@@ -23,9 +23,25 @@ namespace MoviesApiService
         {
             var listMovies = this.mapper.Map<List<Movies>>(dto);
 
-            // TO DO: check in database 
+            var existMovieInDatabase = await this.context.Movies
+                .Select(title => title.Title)
+                .ToListAsync();
 
-            await this.context.Movies.AddRangeAsync(listMovies);
+            if (existMovieInDatabase.Count() == 0)
+            {
+                await this.context.Movies.AddRangeAsync(listMovies);
+            }
+            else
+            {
+                foreach (var movie in listMovies)
+                {
+                    if (!existMovieInDatabase.Contains(movie.Title))
+                    {
+                        await this.context.Movies.AddAsync(movie);
+                    }
+                }
+            }
+
             await this.context.SaveChangesAsync();
         }
 
@@ -67,7 +83,10 @@ namespace MoviesApiService
             var movies = await this.context.Movies
                 .ToListAsync();
 
-            var moviesDto = this.mapper.Map<List<MoviesDto>>(movies);
+            movies.Reverse();
+
+            var moviesDto = this.mapper
+                .Map<List<MoviesDto>>(movies.Take(10));
 
             return moviesDto;
         }

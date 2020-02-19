@@ -3,7 +3,10 @@ function AddMovie(id) {
     $.ajax({
         url: '/Home/AddMyFavoriteMovies',
         type: 'Get',
-        data: { moviesId: id }
+        data: { moviesId: id },
+        success: function () {
+            alert("You added movie to favorite!");
+        }
     })
 }
 
