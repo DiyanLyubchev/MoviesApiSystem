@@ -13,8 +13,11 @@ function AddMovie(id) {
 function ReviewedMovie(id) {
     $.ajax({
         url: '/Home/ReviewedMovie',
-        type: 'Get',
+        type: 'Post',
         data: { reviewedMovieId: id },
+        success: function () {
+            window.location.href = "/home/index/" ;
+        }
     });
 }
 

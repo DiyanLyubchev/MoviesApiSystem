@@ -83,12 +83,12 @@ namespace MoviesApi.Controllers
             return View(listMovieViewModel);
         }
           
-
+        [HttpPost]
         public async Task<IActionResult> ReviewedMovie(int reviewedMovieId)
         {
             await this.service.RemoveReviewedMovie(reviewedMovieId);
 
-            return RedirectToAction("Index");
+            return Json(new { reviewedId = reviewedMovieId });
 
         }
 
