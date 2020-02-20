@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoviesApiData
 {
@@ -13,7 +14,9 @@ namespace MoviesApiData
 
         public int Year { get; set; }
 
-        public bool IsReviewed { get; set; }
+        public DateTime RegisteredInDataBase { get; set; }
+
+        public bool IsWatched { get; set; }
 
         public int? MyMoviesId { get; set; }
 

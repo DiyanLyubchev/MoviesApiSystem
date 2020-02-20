@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -55,7 +56,8 @@ namespace MoviesApi.Controllers
                     {
                         Title = item.movie.title,
                         IMDB = item.movie.ids.imdb,
-                        Year = item.movie.year
+                        Year = item.movie.year,
+                        RegisteredInDataBase = DateTime.Now
                     });
                 }
                 await this.service.AddMovieToDataAsync(listDto);

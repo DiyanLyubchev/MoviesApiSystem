@@ -16,7 +16,7 @@ namespace MoviesApiData.Migrations
                     Title = table.Column<string>(nullable: true),
                     IMDB = table.Column<string>(nullable: true),
                     Year = table.Column<int>(nullable: false),
-                    IsReviewed = table.Column<bool>(nullable: false),
+                    IsWatched = table.Column<bool>(nullable: false),
                     AddOn = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -33,7 +33,8 @@ namespace MoviesApiData.Migrations
                     Title = table.Column<string>(nullable: true),
                     IMDB = table.Column<string>(nullable: true),
                     Year = table.Column<int>(nullable: false),
-                    IsReviewed = table.Column<bool>(nullable: false),
+                    RegisteredInDataBase = table.Column<DateTime>(nullable: false),
+                    IsWatched = table.Column<bool>(nullable: false),
                     MyMoviesId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

@@ -29,11 +29,14 @@ namespace MoviesApiData.Migrations
                     b.Property<string>("IMDB")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsReviewed")
+                    b.Property<bool>("IsWatched")
                         .HasColumnType("bit");
 
                     b.Property<int?>("MyMoviesId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("RegisteredInDataBase")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -61,7 +64,7 @@ namespace MoviesApiData.Migrations
                     b.Property<string>("IMDB")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsReviewed")
+                    b.Property<bool>("IsWatched")
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")

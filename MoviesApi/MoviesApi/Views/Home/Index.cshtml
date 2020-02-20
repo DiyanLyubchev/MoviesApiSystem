@@ -11,16 +11,17 @@
                 <h1 class="text-center" style="color: white">10 top movies for this week</h1>
             </div>
         }
-        <div style="width: 20%; float:right;">
+        <div style="width: 10%; float:right; margin-left: 20px; margin-top: 20px; padding-bottom: 20px;">
             <button class="btn btn-info" onclick="RefreshMovie()">Refresh movies</button>
         </div>
     </div>
     <br />
     <br />
-    <table class="table table-hover">
+    <br />
+    <table class="table table-hover" >
         <thead>
             <tr>
-                <th scope="col" style="color:white">Movie</th>
+                <th scope="col" style="color: white ">Movie</th>
                 <th scope="col" style="color:white">Year</th>
                 <th scope="col" style="color:white">Trailer</th>
                 <th scope="col" style="color:white">Add to favorite</th>
@@ -55,9 +56,9 @@
                         <br />
                     </td>
                     <td>
-                        @if (item.IsReviewed == true)
+                        @if (item.IsWatched == true)
                         {
-                            <i class="fa fa-film fa-3x" style="color:white" aria-hidden="true"></i>
+                            <i class="fa fa-film fa-2x" style="color:white" aria-hidden="true"></i>
                         }
                     </td>
                 </tr>

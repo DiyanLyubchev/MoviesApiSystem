@@ -12,7 +12,9 @@ namespace MoviesApiService
 
         public int Year { get; set; }
 
-        public bool IsReviewed { get; set; }
-       
+        public bool IsWatched { get; set; }
+
+        public DateTime RegisteredInDataBase { get; set; }
+
     }
 }
