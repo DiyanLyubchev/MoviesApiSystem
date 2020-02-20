@@ -1,4 +1,4 @@
-﻿@model List<FilmМoviesViewModel>
+﻿@model List<МoviesViewModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -24,6 +24,7 @@
                 <th scope="col" style="color:white">Year</th>
                 <th scope="col" style="color:white">Trailer</th>
                 <th scope="col" style="color:white">Add to favorite</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -52,6 +53,12 @@
                     <td>
                         <button type="submit" onclick="AddMovie(@item.Id)" class="btn btn-info">Add</button>
                         <br />
+                    </td>
+                    <td>
+                        @if (item.IsReviewed == true)
+                        {
+                            <i class="fa fa-film fa-3x" style="color:white" aria-hidden="true"></i>
+                        }
                     </td>
                 </tr>
 

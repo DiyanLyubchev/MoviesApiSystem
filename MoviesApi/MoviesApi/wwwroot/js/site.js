@@ -1,7 +1,7 @@
 ﻿//get movie to 
 function AddMovie(id) {
     $.ajax({
-        url: '/Home/AddMyFavoriteMovies',
+        url: '/Movie/AddMyFavoriteMovies',
         type: 'Get',
         data: { moviesId: id },
         success: function () {
@@ -12,11 +12,11 @@ function AddMovie(id) {
 
 function ReviewedMovie(id) {
     $.ajax({
-        url: '/Home/ReviewedMovie',
+        url: '/Movie/ReviewedMovie',
         type: 'Post',
         data: { reviewedMovieId: id },
         success: function () {
-            window.location.href = "/home/showMyMovie/" ;
+            window.location.href = "/movie/showMyMovie/" ;
         }
     });
 }
@@ -27,7 +27,7 @@ function RefreshMovie() {
 
 
 function ShowMyMovie() {
-    window.location.href = '/Home/ShowMyMovie'
+    window.location.href = '/Movie/ShowMyMovie'
 }
 
 function GoHome() {

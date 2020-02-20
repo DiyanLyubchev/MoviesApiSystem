@@ -12,5 +12,7 @@ namespace MoviesApiService
 
         public int Year { get; set; }
 
+        public bool IsReviewed { get; set; }
+       
     }
 }

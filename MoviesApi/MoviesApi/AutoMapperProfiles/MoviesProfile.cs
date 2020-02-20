@@ -10,7 +10,7 @@ namespace MoviesApiService.AutoMapperProfiles
         public MoviesProfile()
         {
             CreateMap<Movies, MoviesDto>().ReverseMap();
-            CreateMap<MoviesDto, FilmМoviesViewModel>().ReverseMap();
+            CreateMap<MoviesDto, МoviesViewModel>().ReverseMap();
         }
     }
 }

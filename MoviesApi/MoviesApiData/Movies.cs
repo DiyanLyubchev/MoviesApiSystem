@@ -13,6 +13,8 @@ namespace MoviesApiData
 
         public int Year { get; set; }
 
+        public bool IsReviewed { get; set; }
+
         public int? MyMoviesId { get; set; }
 
         public MyMovies MyMovies { get; set; }

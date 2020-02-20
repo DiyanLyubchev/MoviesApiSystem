@@ -84,8 +84,6 @@ namespace MoviesApiService
             var movies = await this.context.Movies
                 .ToListAsync();
 
-            movies.Reverse();
-
             var moviesDto = this.mapper
                 .Map<List<MoviesDto>>(movies.Take(10));
 
@@ -94,11 +92,16 @@ namespace MoviesApiService
 
         public async Task RemoveReviewedMovie(int id)
         {
-            var movies = await this.context.MyMovies
+            var myMovies = await this.context.MyMovies
                  .Where(reviewedMovieId => reviewedMovieId.Id == id)
                 .FirstAsync();
 
-            movies.IsReviewed = true;
+            var movie = await this.context.Movies
+                .Where(title => title.Title == myMovies.Title)
+                .FirstAsync();
+
+            myMovies.IsReviewed = true;
+            movie.IsReviewed = true;
 
             await this.context.SaveChangesAsync();
         }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -32,7 +30,7 @@ namespace MoviesApi.Controllers
         {
             var allMovies = await this.service.GetAllMoviesAsync();
 
-            var listMovieViewModel = this.mapper.Map<List<FilmМoviesViewModel>>(allMovies);
+            var listMovieViewModel = this.mapper.Map<List<МoviesViewModel>>(allMovies);
 
             return View(listMovieViewModel);
         }
@@ -64,32 +62,6 @@ namespace MoviesApi.Controllers
             }
 
             return RedirectToAction("Index");
-        }
-
-        public async Task<IActionResult> AddMyFavoriteMovies(int moviesId)
-        {
-            var movieDto = await this.service.FindByIdAsync(moviesId);
-
-            await this.service.AddToMyFavoriteAsync(movieDto);
-
-            return Json(new { movie = moviesId });
-        }
-
-        public async Task<IActionResult> ShowMyMovie()
-        {
-            var myMovie = await this.service.GetMyMoviesAsync();
-            var listMovieViewModel = this.mapper.Map<List<MyMoviesViewModel>>(myMovie);
-
-            return View(listMovieViewModel);
-        }
-          
-        [HttpPost]
-        public async Task<IActionResult> ReviewedMovie(int reviewedMovieId)
-        {
-            await this.service.RemoveReviewedMovie(reviewedMovieId);
-
-            return Json(new { reviewedId = reviewedMovieId });
-
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

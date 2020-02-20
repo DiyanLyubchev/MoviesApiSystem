@@ -1,6 +1,6 @@
 ﻿namespace MoviesApi.Models
 {
-    public class FilmМoviesViewModel
+    public class МoviesViewModel
     {
         public int Id { get; set; }
 
@@ -9,5 +9,7 @@
         public string IMDB { get; set; }
 
         public int Year { get; set; }
+
+        public bool IsReviewed { get; set; }
     }
 }
