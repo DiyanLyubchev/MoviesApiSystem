@@ -18,7 +18,7 @@
     <br />
     <br />
     <br />
-    <table class="table table-hover" >
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col" style="color: white ">Movie</th>
@@ -35,7 +35,7 @@
                     <td>
                         <strong>
                             <a href="https://www.imdb.com/title/@item.IMDB/" style="color:blueviolet">
-                                @item.Title - Imdb
+                                @item.Title  <i class="fa fa-imdb fa-2x" style="color:yellow" aria-hidden="true"></i>
                             </a>
 
                         </strong>
@@ -44,15 +44,12 @@
                         @item.Year
                     </td>
                     <td>
-                        <strong>
-                            <a href="    https://www.youtube.com/results?search_query=@item.Title+trailer" style="color:blueviolet">
-                                @item.Title - Trailer
-                            </a>
-
-                        </strong>
+                        <a href="https://www.youtube.com/results?search_query=@item.Title+trailer" style="color:blueviolet">
+                            <i class="fa fa-youtube-play" style="font-size:48px;color:red"></i>
+                        </a>
                     </td>
                     <td>
-                        <button type="submit" onclick="AddMovie(@item.Id)" class="btn btn-info">Add</button>
+                        <button type="submit" onclick="AddMovie(@item.Id)" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Add</button>
                         <br />
                     </td>
                     <td>
@@ -62,7 +59,6 @@
                         }
                     </td>
                 </tr>
-
             }
         </tbody>
     </table>
