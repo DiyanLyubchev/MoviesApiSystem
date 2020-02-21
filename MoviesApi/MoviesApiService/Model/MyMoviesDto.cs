@@ -17,6 +17,5 @@ namespace MoviesApiService.Model
         public DateTime AddOn { get; set; }
 
         public bool IsWatched { get; set; }
-
     }
 }

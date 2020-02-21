@@ -64,8 +64,14 @@ namespace MoviesApiData.Migrations
                     b.Property<string>("IMDB")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsRate")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsWatched")
                         .HasColumnType("bit");
+
+                    b.Property<double?>("Rate")
+                        .HasColumnType("float");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

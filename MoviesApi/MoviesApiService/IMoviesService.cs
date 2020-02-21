@@ -17,5 +17,7 @@ namespace MoviesApiService
         Task<IEnumerable<MyMoviesDto>> GetMyMoviesAsync();
 
         Task RemoveReviewedMovie(int id);
+
+        Task<bool> RateMovieAsync(RatingDto dto);
     }
 }

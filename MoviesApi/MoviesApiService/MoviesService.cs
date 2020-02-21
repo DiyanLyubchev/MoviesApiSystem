@@ -106,5 +106,30 @@ namespace MoviesApiService
 
             await this.context.SaveChangesAsync();
         }
+
+        public async Task<bool> RateMovieAsync(RatingDto dto)
+        {
+            if (dto.MovieId == 0)
+            {
+                return false;
+            }
+
+            var myMovie = await this.context.MyMovies
+                .Where(id => id.Id == dto.MovieId)
+                .SingleAsync();
+
+            if (myMovie == null)
+            {
+                return false;
+            }
+
+            myMovie.Rate = dto.Rating;
+            myMovie.IsRate = true;
+
+            await this.context.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }

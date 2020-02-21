@@ -10,7 +10,7 @@ using MoviesApiData;
 namespace MoviesApiData.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    [Migration("20200220055805_Initial")]
+    [Migration("20200220144733_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,8 +66,14 @@ namespace MoviesApiData.Migrations
                     b.Property<string>("IMDB")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsRate")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsWatched")
                         .HasColumnType("bit");
+
+                    b.Property<double?>("Rate")
+                        .HasColumnType("float");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

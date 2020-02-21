@@ -17,6 +17,10 @@ namespace MoviesApiData
 
         public bool IsWatched { get; set; }
 
+        public bool IsRate { get; set; }
+
+        public double? Rate { get; set; }
+
         public DateTime AddOn { get; set; }
 
         public ICollection<Movies> Movies { get; set; }

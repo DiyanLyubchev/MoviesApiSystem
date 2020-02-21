@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MoviesApi.Models;
 using MoviesApiService;
+using MoviesApiService.Model;
 
 namespace MoviesApi.Controllers
 {
@@ -44,6 +45,25 @@ namespace MoviesApi.Controllers
 
             return Json(new { reviewedId = reviewedMovieId });
 
+        }
+
+        public async Task<IActionResult> RateMovie([FromQuery]string data)
+        {
+            var ratingMovie = data.Split(' ');
+
+            var rating = double.Parse(ratingMovie[0]);
+            var movieId = int.Parse(ratingMovie[2]);
+
+            var dto = new RatingDto
+            {
+                Rating = rating,
+                MovieId = movieId,
+            };
+
+            await this.service.RateMovieAsync(dto);
+
+
+            return View();
         }
     }
 }
