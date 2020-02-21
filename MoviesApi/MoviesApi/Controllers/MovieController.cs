@@ -51,8 +51,20 @@ namespace MoviesApi.Controllers
         {
             var ratingMovie = data.Split(' ');
 
-            var rating = double.Parse(ratingMovie[0]);
-            var movieId = int.Parse(ratingMovie[2]);
+            double rating = 0;
+            var movieId = 0;
+
+            if (ratingMovie.Length == 3)
+            {
+                rating = double.Parse(ratingMovie[0]);
+                movieId = int.Parse(ratingMovie[2]);
+            }
+            else if (ratingMovie.Length == 2)
+            {
+                rating = double.Parse(ratingMovie[0]);
+                movieId = int.Parse(ratingMovie[1]);
+            }
+
 
             var dto = new RatingDto
             {
@@ -67,7 +79,7 @@ namespace MoviesApi.Controllers
 
         public async Task<IActionResult> GetMyAllRateAndReviewedMovies()
         {
-           var listMovies = await this.service.GetAllMyWatchedMoviesAsync();
+            var listMovies = await this.service.GetAllMyWatchedMoviesAsync();
 
             var viewList = this.mapper.Map<List<MyMoviesViewModel>>(listMovies);
 
