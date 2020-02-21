@@ -134,7 +134,7 @@ namespace MoviesApiService
         public async Task<IEnumerable<MyMoviesDto>> GetAllMyWatchedMoviesAsync()
         {
             var movies = await this.context.MyMovies
-                 .Where(reviewed => reviewed.IsRate == true && reviewed.IsWatched == true)
+                 .Where(reviewed => reviewed.IsRate == true && reviewed.IsWatched)
                 .ToListAsync();
 
             var moviesDto = this.mapper.Map<List<MyMoviesDto>>(movies);

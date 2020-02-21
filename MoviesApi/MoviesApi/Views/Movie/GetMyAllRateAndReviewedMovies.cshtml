@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "GetMyAllRateAndReviewedMovies";
 }
+    <head>
+        <link href="~/css/my-rating.css" rel="stylesheet" />
+    </head>
 <body>
     <table class="table table-hover">
         <thead>
@@ -21,14 +24,31 @@
                     <td style="color:white">
                         @item.Year
                     </td>
-                    <td style="color:white">
-                        @item.Rate
+                    <td>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        <form>
+                            <div class="rating">
+                                @for (int i = 0; i < @item.Rate; i++)
+                                {
+                                    <label style="color:yellow">☆</label>
+                                }
+                                <input type="radio" name="starValue" value="@item.Rate" />
+                            </div>
+                        </form>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    <button class="btn btn-info" onclick="GoHome()">Home</button>
+    <button class="btn btn-info" onclick="GoHome()"><i class="fa fa-home" aria-hidden="true"></i> Home</button>
+    <script>
+        $(document).ready(function () {
+            $('label').click(function () {
+                $('label').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
 </body>
 
 
