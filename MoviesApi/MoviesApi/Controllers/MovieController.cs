@@ -62,8 +62,17 @@ namespace MoviesApi.Controllers
 
             await this.service.RateMovieAsync(dto);
 
-
             return View();
+        }
+
+        public async Task<IActionResult> GetMyAllRateAndReviewedMovies()
+        {
+           var listMovies = await this.service.GetAllMyWatchedMoviesAsync();
+
+            var viewList = this.mapper.Map<List<MyMoviesViewModel>>(listMovies);
+
+            return View(viewList);
+
         }
     }
 }

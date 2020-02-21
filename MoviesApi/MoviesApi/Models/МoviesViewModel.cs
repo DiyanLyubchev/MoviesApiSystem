@@ -11,5 +11,6 @@
         public int Year { get; set; }
 
         public bool IsWatched { get; set; }
+
     }
 }

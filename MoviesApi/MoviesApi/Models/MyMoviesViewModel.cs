@@ -13,5 +13,9 @@ namespace MoviesApi.Models
         public int Year { get; set; }
 
         public DateTime AddOn { get; set; }
+
+        public bool IsRate { get; set; }
+
+        public double? Rate { get; set; }
     }
 }

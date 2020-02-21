@@ -30,11 +30,13 @@ function ShowMyMovie() {
     window.location.href = '/Movie/ShowMyMovie'
 }
 
+function ShowWachedMovie() {
+    window.location.href =  '/Movie/GetMyAllRateAndReviewedMovies'
+}
+
 function GoHome() {
     window.location.href = '/Home/Index'
 }
-
-
 
 $(':radio').change(function () {
     const rate = this.value;
