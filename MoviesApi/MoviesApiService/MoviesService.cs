@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using System;
 using MoviesApiService.Model;
+using System.Threading;
 
 namespace MoviesApiService
 {
@@ -19,7 +20,7 @@ namespace MoviesApiService
             this.mapper = mapper;
         }
 
-        public async Task AddMovieToDataAsync(List<MoviesDto> dto)
+        public async Task AddMovieToDataAsync(List<MoviesDto> dto , CancellationToken cancellationToken)
         {
             var listMovies = this.mapper.Map<List<Movies>>(dto);
 
@@ -42,10 +43,10 @@ namespace MoviesApiService
                 }
             }
 
-            await this.context.SaveChangesAsync();
+            await this.context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<MoviesDto> FindByIdAsync(int id)
+        public async Task<MoviesDto> FindByIdAsync(int id )
         {
             var movie = await this.context.Movies
                 .FindAsync(id);
@@ -53,7 +54,7 @@ namespace MoviesApiService
             return this.mapper.Map<MoviesDto>(movie);
         }
 
-        public async Task AddToMyFavoriteAsync(MoviesDto dto)
+        public async Task AddToMyFavoriteAsync(MoviesDto dto , CancellationToken cancellationToken)
         {
 
             var myMovie = new MyMovies
@@ -65,25 +66,25 @@ namespace MoviesApiService
             };
 
             await this.context.MyMovies.AddAsync(myMovie);
-            await this.context.SaveChangesAsync();
+            await this.context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<IEnumerable<MyMoviesDto>> GetMyMoviesAsync()
+        public async Task<IEnumerable<MyMoviesDto>> GetMyMoviesAsync(CancellationToken cancellationToken)
         {
             var movies = await this.context.MyMovies
                  .Where(reviewed => reviewed.IsWatched == false)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             var moviesDto = this.mapper.Map<List<MyMoviesDto>>(movies);
 
             return moviesDto;
         }
 
-        public async Task<IEnumerable<MoviesDto>> GetAllMoviesAsync()
+        public async Task<IEnumerable<MoviesDto>> GetAllMoviesAsync(CancellationToken cancellationToken)
         {
             var movies = await this.context.Movies
                 .OrderByDescending(e => e.RegisteredInDataBase)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             var moviesDto = this.mapper
                 .Map<List<MoviesDto>>(movies.Take(10));
@@ -91,7 +92,7 @@ namespace MoviesApiService
             return moviesDto;
         }
 
-        public async Task RemoveReviewedMovie(int id)
+        public async Task RemoveReviewedMovie(int id , CancellationToken cancellationToken)
         {
             var myMovies = await this.context.MyMovies
                  .Where(reviewedMovieId => reviewedMovieId.Id == id)
@@ -104,10 +105,10 @@ namespace MoviesApiService
             myMovies.IsWatched = true;
             movie.IsWatched = true;
 
-            await this.context.SaveChangesAsync();
+            await this.context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<bool> RateMovieAsync(RatingDto dto)
+        public async Task<bool> RateMovieAsync(RatingDto dto , CancellationToken cancellationToken)
         {
             if (dto.MovieId == 0)
             {
@@ -126,16 +127,16 @@ namespace MoviesApiService
             myMovie.Rate = dto.Rating;
             myMovie.IsRate = true;
 
-            await this.context.SaveChangesAsync();
+            await this.context.SaveChangesAsync(cancellationToken);
 
             return true;
         }
 
-        public async Task<IEnumerable<MyMoviesDto>> GetAllMyWatchedMoviesAsync()
+        public async Task<IEnumerable<MyMoviesDto>> GetAllMyWatchedMoviesAsync(CancellationToken cancellationToken)
         {
             var movies = await this.context.MyMovies
                  .Where(reviewed => reviewed.IsRate == true && reviewed.IsWatched)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             var moviesDto = this.mapper.Map<List<MyMoviesDto>>(movies);
 

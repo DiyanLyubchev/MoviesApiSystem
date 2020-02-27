@@ -1,4 +1,4 @@
-﻿//get movie to 
+﻿//get movie to favorite 
 function AddMovie(id) {
     $.ajax({
         url: '/Movie/AddMyFavoriteMovies',

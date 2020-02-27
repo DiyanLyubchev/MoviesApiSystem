@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -27,16 +28,16 @@ namespace MoviesApi.Controllers
             this.mapper = mapper;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var allMovies = await this.service.GetAllMoviesAsync();
+            var allMovies = await this.service.GetAllMoviesAsync(cancellationToken);
 
             var listMovieViewModel = this.mapper.Map<List<МoviesViewModel>>(allMovies);
 
             return View(listMovieViewModel);
         }
 
-        public async Task<IActionResult> GetNewMovies()
+        public async Task<IActionResult> GetNewMovies(CancellationToken cancellationToken)
         {
             using (var httpClient = new HttpClient())
             {
@@ -60,7 +61,7 @@ namespace MoviesApi.Controllers
                         RegisteredInDataBase = DateTime.Now
                     });
                 }
-                await this.service.AddMovieToDataAsync(listDto);
+                await this.service.AddMovieToDataAsync(listDto , cancellationToken);
             }
 
             return RedirectToAction("Index");
