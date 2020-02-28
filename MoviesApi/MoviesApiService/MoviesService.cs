@@ -54,16 +54,22 @@ namespace MoviesApiService
             return this.mapper.Map<MoviesDto>(movie);
         }
 
-        public async Task AddToMyFavoriteAsync(MoviesDto dto , CancellationToken cancellationToken)
+        private MyMovies MyMoviesGenerator(MoviesDto dto)
         {
-
-            var myMovie = new MyMovies
+            Func<string, int, string, MyMovies> myMovieGenerator = (title, year, imdb) => new MyMovies
             {
-                Title = dto.Title,
-                Year = dto.Year,
-                IMDB = dto.IMDB,
+                Title = title,
+                Year = year,
+                IMDB = imdb,
                 AddOn = DateTime.Now
             };
+
+            return myMovieGenerator(dto.Title, dto.Year, dto.IMDB);
+        }
+
+        public async Task AddToMyFavoriteAsync(MoviesDto dto , CancellationToken cancellationToken)
+        {
+            var myMovie = MyMoviesGenerator(dto);
 
             await this.context.MyMovies.AddAsync(myMovie);
             await this.context.SaveChangesAsync(cancellationToken);

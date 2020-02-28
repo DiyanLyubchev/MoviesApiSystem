@@ -1,4 +1,4 @@
-﻿//get movie to favorite 
+﻿//add movie to favorite 
 function AddMovie(id) {
     $.ajax({
         url: '/Movie/AddMyFavoriteMovies',
@@ -10,6 +10,8 @@ function AddMovie(id) {
     })
 }
 
+
+// reviewed movie
 function ReviewedMovie(id) {
     $.ajax({
         url: '/Movie/ReviewedMovie',
@@ -21,6 +23,8 @@ function ReviewedMovie(id) {
     });
 }
 
+
+// rate
 $(':radio').change(function () {
     const rate = this.value;
     
