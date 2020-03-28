@@ -30,6 +30,7 @@ namespace MoviesApi
 
 
             services.AddScoped<IMoviesService, MoviesService>();
+            services.AddScoped<IWebService, WebService>();
             services.AddAutoMapper(typeof(Startup));
         }
 

@@ -18,14 +18,17 @@ namespace MoviesApi.Controllers
     {
         private readonly ILogger<HomeController> logger;
 
+        private readonly IWebService webService;
+
         private readonly IMoviesService service;
 
         private readonly IMapper mapper;
-        public HomeController(ILogger<HomeController> logger, IMoviesService service, IMapper mapper)
+        public HomeController(ILogger<HomeController> logger, IMoviesService service, IMapper mapper, IWebService webService)
         {
             this.logger = logger;
             this.service = service;
             this.mapper = mapper;
+            this.webService = webService;
         }
 
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
@@ -39,30 +42,7 @@ namespace MoviesApi.Controllers
 
         public async Task<IActionResult> GetNewMovies(CancellationToken cancellationToken)
         {
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.DefaultRequestHeaders
-                  .Accept
-                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                httpClient.DefaultRequestHeaders.Add("trakt-api-version", "2");
-                httpClient.DefaultRequestHeaders.Add("trakt-api-key", "402fba05ed79a82efcf250432e3796198b6a23bcd62d16abd0640d114aaeaa8d");
-                var trending = await httpClient.GetStringAsync("https://api.trakt.tv/movies/trending");
-
-                var listDto = new List<MoviesDto>();
-                var trendingJSON = JsonConvert.DeserializeObject<dynamic>(trending);
-                foreach (var item in trendingJSON)
-                {
-                    listDto.Add(new MoviesDto
-                    {
-                        Title = item.movie.title,
-                        IMDB = item.movie.ids.imdb,
-                        Year = item.movie.year,
-                        RegisteredInDataBase = DateTime.Now
-                    });
-                }
-                await this.service.AddMovieToDataAsync(listDto , cancellationToken);
-            }
+            await this.webService.GetNewMovies(cancellationToken);
 
             return RedirectToAction("Index");
         }

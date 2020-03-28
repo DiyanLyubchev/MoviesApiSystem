@@ -4,66 +4,68 @@
 }
 
 <body>
-    <div style="width: 100%; height:80px">
-        @if (Model.Count() != 0)
-        {
-            <div style="width: 80%">
-                <h1 class="text-center" style="color: white">10 top movies for this week</h1>
-            </div>
-        }
-        <div style="width: 10%; float:right; margin-left: 20px; margin-top: 20px; padding-bottom: 20px;">
-            <button class="btn btn-info" onclick="RefreshMovie()"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh movies</button>
-        </div>
-    </div>
-    <br />
-    <br />
-    <br />
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col" style="color: white ">Movie</th>
-                <th scope="col" style="color:white">Year</th>
-                <th scope="col" style="color:white">Trailer</th>
-                <th scope="col" style="color:white">Add to favorite</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+    <div class="container">
+        <div style="width: 100%; height:80px">
+            @if (Model.Count() != 0)
             {
-                <tr>
-                    <td>
-                        <strong>
-                            <a href="https://www.imdb.com/title/@item.IMDB/" style="color:blueviolet">
-                                @item.Title  <i class="fa fa-imdb fa-2x" style="color:yellow" aria-hidden="true"></i>
-                            </a>
-
-                        </strong>
-                    </td>
-                    <td style="color:white">
-                        @item.Year
-                    </td>
-                    <td>
-                        <a href="https://www.youtube.com/results?search_query=@item.Title+trailer" style="color:blueviolet">
-                            <i class="fa fa-youtube-play" style="font-size:48px;color:red"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <button type="submit" onclick="AddMovie(@item.Id)" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Add</button>
-                        <br />
-                    </td>
-                    <td>
-                        @if (item.IsWatched == true)
-                        {
-                            <i class="fa fa-film fa-2x" style="color:white" aria-hidden="true"></i>
-                        }
-                    </td>
-                </tr>
+                <div style="width: 80%">
+                    <h1 class="text-center" style="color: white">10 top movies for this week</h1>
+                </div>
             }
-        </tbody>
-    </table>
-    <button class="btn btn-info" onclick="ShowMyMovie()"><i class="fa fa-file-video-o" aria-hidden="true"></i> Movies for watch and rate</button>
-    <button class="btn btn-info" onclick="ShowWachedMovie()"><i class="fa fa-check" aria-hidden="true"></i> Movies watched</button>
+            <div style="width: 10%; float:right; margin-left: 20px; margin-top: 20px; padding-bottom: 20px;">
+                <button class="btn btn-info" onclick="RefreshMovie()"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh movies</button>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" style="color: white ">Movie</th>
+                    <th scope="col" style="color:white">Year</th>
+                    <th scope="col" style="color:white">Trailer</th>
+                    <th scope="col" style="color:white">Add to favorite</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <strong>
+                                <a href="https://www.imdb.com/title/@item.IMDB/" style="color:blueviolet">
+                                    @item.Title  <i class="fa fa-imdb fa-2x" style="color:yellow" aria-hidden="true"></i>
+                                </a>
+
+                            </strong>
+                        </td>
+                        <td style="color:white">
+                            @item.Year
+                        </td>
+                        <td>
+                            <a href="https://www.youtube.com/results?search_query=@item.Title+trailer" style="color:blueviolet">
+                                <i class="fa fa-youtube-play" style="font-size:48px;color:red"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <button type="submit" onclick="AddMovie(@item.Id)" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Add</button>
+                            <br />
+                        </td>
+                        <td>
+                            @if (item.IsWatched == true)
+                            {
+                                <i class="fa fa-film fa-2x" style="color:white" aria-hidden="true"></i>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button class="btn btn-info" onclick="ShowMyMovie()"><i class="fa fa-file-video-o" aria-hidden="true"></i> Movies for watch and rate</button>
+        <button class="btn btn-info" onclick="ShowWachedMovie()"><i class="fa fa-check" aria-hidden="true"></i> Movies watched</button>
+    </div>
     <div class="purple"></div>
     <div class="medium-blue"></div>
     <div class="light-blue"></div>

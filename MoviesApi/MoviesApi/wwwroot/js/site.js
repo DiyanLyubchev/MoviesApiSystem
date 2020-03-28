@@ -5,7 +5,9 @@ function AddMovie(id) {
         type: 'Get',
         data: { moviesId: id },
         success: function () {
-            alert("You added movie to favorite!");
+            toastr.options.positionClass = "toast-top-right";
+            toastr.success('Added movie.');
+           // alert("You added movie to favorite!");
         }
     })
 }
