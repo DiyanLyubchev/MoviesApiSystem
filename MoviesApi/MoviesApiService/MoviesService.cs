@@ -93,7 +93,7 @@ namespace MoviesApiService
                 .ToListAsync(cancellationToken);
 
             var moviesDto = this.mapper
-                .Map<List<MoviesDto>>(movies.Take(10));
+                .Map<List<MoviesDto>>(movies.Take(15));
 
             return moviesDto;
         }

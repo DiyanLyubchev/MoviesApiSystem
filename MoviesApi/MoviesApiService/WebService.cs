@@ -32,16 +32,10 @@ namespace MoviesApiService
                 var trending = await httpClient.GetStringAsync("https://api.trakt.tv/movies/trending");
 
                 var listDto = new List<MoviesDto>();
-                var trendingJSON = JsonConvert.DeserializeObject<dynamic>(trending);
+                var trendingJSON = JsonConvert.DeserializeObject<MoviesDto[]>(trending);
                 foreach (var item in trendingJSON)
                 {
-                    listDto.Add(new MoviesDto
-                    {
-                        Title = item.movie.title,
-                        IMDB = item.movie.ids.imdb,
-                        Year = item.movie.year,
-                        RegisteredInDataBase = DateTime.Now
-                    });
+                    listDto.Add(item);
                 }
                 await this.service.AddMovieToDataAsync(listDto, cancellationToken);
             }
