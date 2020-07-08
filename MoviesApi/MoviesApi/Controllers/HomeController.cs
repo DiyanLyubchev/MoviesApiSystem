@@ -33,12 +33,13 @@ namespace MoviesApi.Controllers
         public async Task<IActionResult> Index(int id,CancellationToken cancellationToken)
         {
             var allMovies = await this.service.GetAllMoviesAsync(cancellationToken);
+            
             var count = allMovies.Count();
             var data = allMovies.OrderBy(x => x.Id).Skip(id * PageSize).Take(PageSize).ToList();
-
             var listMovieViewModel = this.mapper.Map<List<МoviesViewModel>>(data);
             this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
             this.ViewBag.Page = id;
+
             return View(listMovieViewModel);
         }
 
