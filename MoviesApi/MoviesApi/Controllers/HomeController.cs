@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MoviesApi.Models;
@@ -21,7 +22,7 @@ namespace MoviesApi.Controllers
 
         private readonly IMapper mapper;
 
-        private const int PageSize = 5;
+        private const int PageSize = 3;
         public HomeController(ILogger<HomeController> logger, IMoviesService service, IMapper mapper, IWebService webService)
         {
             this.logger = logger;
@@ -33,7 +34,7 @@ namespace MoviesApi.Controllers
         public async Task<IActionResult> Index(int id,CancellationToken cancellationToken)
         {
             var allMovies = await this.service.GetAllMoviesAsync(cancellationToken);
-            
+
             var count = allMovies.Count();
             var data = allMovies.OrderBy(x => x.Id).Skip(id * PageSize).Take(PageSize).ToList();
             var listMovieViewModel = this.mapper.Map<List<МoviesViewModel>>(data);
